@@ -1,4 +1,4 @@
-[Use Decay App now by clicking here.](https://30days15products.xyz)
+[Use Decay App now by clicking here.](https://30days15products.xyz/decay)
 
 # Introduction
 
