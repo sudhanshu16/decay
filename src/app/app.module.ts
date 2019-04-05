@@ -14,7 +14,6 @@ import {AngularFireStorageModule} from '@angular/fire/storage';
 import {AngularFireModule} from '@angular/fire';
 import {DashboardHeaderComponent} from './dashboard-header/dashboard-header.component';
 import {DashboardFooterComponent} from './dashboard-footer/dashboard-footer.component';
-import {ArticleComponent} from './article/article.component';
 import {LoaderComponent} from './loader/loader.component';
 import {AddArticleComponent} from './add-article/add-article.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -62,7 +61,6 @@ const appRoutes: Routes = [
     LoginComponent,
     DashboardHeaderComponent,
     DashboardFooterComponent,
-    ArticleComponent,
     LoaderComponent,
     AddArticleComponent,
     EditArticleComponent,
