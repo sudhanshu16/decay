@@ -1,0 +1,35 @@
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  box-shadow: 0 -2px 3px rgba(0, 0, 0, 0.05);
+  background-color: #fdfdfd;
+  width: 100%;
+}
+
+.footer > div {
+  padding: 10px 0 0;
+  display: inline-block;
+  white-space: nowrap;
+  width: 50%;
+  text-align: center;
+}
+
+.footer > div > svg {
+  height: 28px;
+  margin: 5px 0;
+  display: inline-block;
+}
+
+.footer > div > svg * {
+  fill: #999;
+}
+
+.footer > div.active > svg {
+  height: 38px;
+  margin: 0;
+}
+
+.footer > div.active > svg * {
+  fill: #333;
+}

@@ -1,27 +1,57 @@
-# Application
+[Use Decay App now by clicking here.](https://30days15products.xyz)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.5.
+# Introduction
 
-## Development server
+An app (PWA) that notifies you before your groceries go bad.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+It consists a user facing app written in Angular with a PHP backend to send 
+notifications to users as required.
 
-## Code scaffolding
+# Technologies Used
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+1. **Angular**: FrontEnd Progressive Web Applications
+2. **PHP**: Native PHP script for push notifications
+3. **Firebase/Firestore**: Realtime Database Solution
+4. **OneSignal**: Push Notifications over the Web
 
-## Build
+# Setup Steps
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+1. Substitute credentials in the following files:
+   - `src/app/app.module.ts`: Create an app on Firebase then copy the credentials provided for the app by firebase into the `config` variable.  
+   - `src/backend/firebase_service_credentials`: Go to Project Settings on Firebase console then click on service accounts from the top navigation and download/generate private. Paste downloaded key into this file.  
+   - `src/app/one-signal.service.ts`: Create a OneSignal app and substitute your appId in the `initOneSignal()` function.  
+   - `src/manifest.json`: Substitute the `gcm_sender_id` with the one provided in the OneSignalSDK zip file
+   - `src/backend/reminder.php`: Substitute the secret with any hash of your choice.
+2. Install packages
+   - Run `npm install` in the `/` directory
+   - Run `composer install` in the `/src/backend` directory
+3. Database Setup. 
+   - You may use the following firestore rules  
+        ```
+        service cloud.firestore {
+         match /databases/{database}/documents {
+            match /users/{userId} {
+              allow read, update: if request.auth.uid == userId;
+              allow create: if request.auth.uid != null;
+            }
+            match /users/{userId}/articles/{document=**} {
+              allow read, update, delete: if request.auth.uid == userId;
+              allow create: if request.auth.uid != null;
+            }
+            match /users/{document=**} {
+              allow read, write: if request.auth.token.admin == true ;
+            }
+          }
+        }
+        ```
+   - Create a collection named `users` to start with.
+4. Under authentication, turn Sign-In by Google on. Whitelist your desired domain.
+5. Setup and customize the OneSignal app according to your needs.
 
-## Running unit tests
+# TODOs
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+- Writing Tests
+- Add intuitive prompt for user to add app on home screen.
+- Intelligent expiry recommendation. For ex: if you buy milk, give an approximate expiry of 5 days.
+ 
+If anyone is interested in contributing, feel free to create pull request for the same.

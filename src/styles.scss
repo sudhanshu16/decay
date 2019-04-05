@@ -1,0 +1,98 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "app/app.component";
+
+%input-element {
+  font-family: inherit;
+}
+
+%input {
+  @extend %input-element;
+  margin: 10px auto;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  outline: 0;
+  font-size: 1em;
+  border: 1px solid #e3e3e3;
+  padding: 7px 10px;
+  box-sizing: border-box;
+  background: white;
+  width: 95%;
+  display: block;
+}
+
+%input-element:focus {
+  border-color: #80bdff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25);
+}
+
+input, textarea, select, option {
+  @extend %input;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Nunito', sans-serif;
+  color: #333;
+  box-sizing: border-box;
+}
+
+* {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  outline: 0;
+}
+
+.ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1%;
+  height: 1%;
+  background: rgba(255, 255, 255, .5);
+  opacity: 0;
+  border-radius: 100%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.ripple.dark:after {
+  background: rgba(0, 0, 0, .05);
+}
+
+@keyframes ripple {
+  0% {
+    width: 0%;
+    height: 40px;
+    opacity: 1;
+  }
+  20% {
+    width: 25%;
+    height: 100px;
+    opacity: 1;
+  }
+  100% {
+    width: 100%;
+    height: 200px;
+    opacity: 0;
+  }
+}
+
+.ripple:focus:not(:active)::after {
+  animation: ripple .5s ease-out;
+}
+
+@media all and (max-width: 850px) {
+
+}

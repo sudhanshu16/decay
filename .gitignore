@@ -33,6 +33,9 @@ npm-debug.log
 yarn-error.log
 testem.log
 /typings
+/src/backend/firebase_service_credentials.json
+/src/backend/vendor
+/src/backend/.idea
 
 # System Files
 .DS_Store

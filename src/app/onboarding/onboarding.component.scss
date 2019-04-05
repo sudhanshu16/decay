@@ -1,0 +1,40 @@
+@import "~src/app/app.component";
+
+.onboarding {
+  text-align: center;
+}
+
+.logo {
+  margin: 5% 0 1%;
+}
+
+.tagline {
+  font-size: 1.4em;
+  margin-bottom: 5%;
+}
+
+.infographic {
+  margin-bottom: 3%;
+}
+
+.tutorial {
+  max-width: 700px;
+  display: inline-block;
+  margin-bottom: 4%;
+}
+
+
+@media all and (max-width: 850px) {
+  .tagline, .infographic, .tutorial {
+    margin-bottom: 25%;
+  }
+  app-cta {
+    position: fixed;
+    bottom: 3%;
+    left: 2%;
+    width: 96%;
+  }
+  .onboarding {
+    padding: 3%;
+  }
+}

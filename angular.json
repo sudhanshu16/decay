@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "application": {
+    "decay": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,17 +13,23 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/application",
+            "outputPath": "dist/decay",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/manifest.json",
+              "src/.htaccess",
+              "src/backend",
+              "src/manifest.json",
+              "src/OneSignalSDKUpdaterWorker.js",
+              "src/OneSignalSDKWorker.js"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": []
           },
@@ -43,25 +49,27 @@
               "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": true
+              "buildOptimizer": true,
+              "serviceWorker": true,
+              "ngswConfigPath": "src/ngsw-config.json"
             }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "application:build"
+            "browserTarget": "decay:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "application:build:production"
+              "browserTarget": "decay:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "application:build"
+            "browserTarget": "decay:build"
           }
         },
         "test": {
@@ -77,7 +85,9 @@
             "scripts": [],
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/manifest.json",
+              "src/manifest.json"
             ]
           }
         },
@@ -95,7 +105,7 @@
         }
       }
     },
-    "application-e2e": {
+    "decay-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -103,11 +113,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "application:serve"
+            "devServerTarget": "decay:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "application:serve:production"
+              "devServerTarget": "decay:serve:production"
             }
           }
         },
@@ -123,5 +133,10 @@
       }
     }
   },
-  "defaultProject": "application"
+  "defaultProject": "decay",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  }
 }

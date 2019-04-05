@@ -1,0 +1,19 @@
+.settings {
+  text-align: center;
+}
+
+label {
+  vertical-align: middle;
+}
+
+input[type="checkbox"], input[type="radio"] {
+  display: inline-block;
+  width: auto;
+  vertical-align: middle;
+  margin-left: 5px;
+}
+
+.form {
+  text-align: left;
+  padding: 0 5%;
+}

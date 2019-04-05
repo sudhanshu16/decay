@@ -1,0 +1,32 @@
+<app-dashboard-header activePage="Dashboard"></app-dashboard-header>
+
+<app-loader *ngIf="articles === undefined"></app-loader>
+
+<div *ngIf="articles !== undefined" class="dashboard">
+  <h2 *ngIf="articles.length">Things about to go bad:</h2>
+  <h2 *ngIf="!articles.length">Get notified about expiring groceries! <br> Add articles now</h2>
+  <table>
+    <tr *ngFor="let article of articles; let i = index">
+      <td>{{article.name}}</td>
+      <td>{{article.expiry * 1000 | date: 'yyyy-MM-dd'}}
+        <a [routerLink]="'/edit-article/' + article.uid">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <path
+              d="M64 368v80h80l235.727-235.729-79.999-79.998L64 368zm377.602-217.602c8.531-8.531 8.531-21.334 0-29.865l-50.135-50.135c-8.531-8.531-21.334-8.531-29.865 0l-39.468 39.469 79.999 79.998 39.469-39.467z"/>
+          </svg>
+        </a>
+        <a (click)="deleteArticle(article.uid)">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <path
+              d="M128 405.429C128 428.846 147.198 448 170.667 448h170.667C364.802 448 384 428.846 384 405.429V160H128v245.429zM416 96h-80l-26.785-32H202.786L176 96H96v32h320V96z"/>
+          </svg>
+        </a>
+      </td>
+    </tr>
+  </table>
+  <br>
+  <app-cta title="Add Article" routerLink="/add-article"></app-cta>
+  <div class='onesignal-customlink-container'></div>
+</div>
+
+<app-dashboard-footer activePage="Dashboard"></app-dashboard-footer>

@@ -1,0 +1,17 @@
+<app-dashboard-header activePage="Add Article"></app-dashboard-header>
+
+<div class="add-article">
+  <h3>Please enter the details: </h3>
+  <label>
+    <span>Article Name</span>
+    <input type="text" name="name" [(ngModel)]="article.name">
+  </label>
+  <label>
+    <span>Expires On</span>
+    <input type="date" name="expires-on" [(ngModel)]="article.expires">
+  </label>
+  <br>
+  <app-cta title="Add Article" (click)="addArticle()" [disabled]="working"></app-cta>
+</div>
+
+<app-dashboard-footer></app-dashboard-footer>

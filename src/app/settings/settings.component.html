@@ -1,0 +1,34 @@
+<app-dashboard-header activePage="Settings"></app-dashboard-header>
+
+<app-loader *ngIf="user === undefined"></app-loader>
+
+<div *ngIf="user !== undefined" class="settings">
+  <br>
+  <div class="form">
+    <label>
+      Send Notifications
+      <input type="checkbox" [(ngModel)]="user.settings.sendNotifs">
+    </label>
+    <br>
+    <br>
+    <label>
+      How many days prior to expiry, you want to be start getting notifications?
+      <input type="number" [(ngModel)]="user.settings.prior" min="1" value="2">
+    </label>
+    <br>
+    Send me notifications in every:
+    <br>
+    <label>
+      1 day
+      <input type="radio" [(ngModel)]="user.settings.interval" [value]="24">
+    </label>
+    <label>
+      2 days
+      <input type="radio" [(ngModel)]="user.settings.interval" [value]="48">
+    </label>
+  </div>
+  <br>
+  <app-cta title="Save" (click)="saveSettings()" [disabled]="working"></app-cta>
+</div>
+
+<app-dashboard-footer activePage="Settings"></app-dashboard-footer>
