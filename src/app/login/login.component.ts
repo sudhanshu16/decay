@@ -12,13 +12,12 @@ export class LoginComponent implements OnInit {
 
   constructor(public auth: AuthService, private router: Router, private afAuth: AngularFireAuth, ) {
     auth.googleLogin();
-    afAuth.auth.getRedirectResult().then(function(result) {
-      if (result.credential) {
-        const credential = result.credential;
+    afAuth.auth.onAuthStateChanged((user) => {
+      if (user) {
         const data = {
-          uid: credential['user'].uid,
-          email: credential['user'].email,
-          name: credential['user'].displayName,
+          uid: user.uid,
+          email: user.email,
+          name: user.displayName,
           settings: {
             sendNotifs: true,
             prior: 3,
@@ -26,10 +25,11 @@ export class LoginComponent implements OnInit {
           }
         };
         auth.updateUserData(data);
+        this.router.navigate(['dashboard']);
         console.log('logged in');
       }
-    }).catch(function(error) {
-     console.log('not logged in');
+    }, (error) => {
+      console.log('not logged in');
     });
   }
 
